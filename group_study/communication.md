@@ -17,9 +17,10 @@
 
 ## Communication Schedule
 
-| Day | How | The topic of discussion |
-| --- | :-: | ----------------------- |
-|     |     |                         |
+| Day                           | How  | The topic of discussion                                                  |
+| Mon Jan 15 1:00 - 2:00 pm EST | Zoom | Gut and Github introduction, General organizational questions discussion |
+| Tue Jan 16 1:00 - 2:00 pm EST | Zoom | Work with the group documents for the Milestoune 0                       |
+| Thu Jan 18 1:00 - 2:00 pm EST | Zoom | Code review and retrospective                                            |
 
 ## Communication Channels
 
@@ -29,7 +30,7 @@ how often will we get in touch on each channel, and what we will discuss there:
 - **Pull Requests**:
 - **GitHub Discussions**
 - **Slack/Discord**:
-- **Video Calls**:
+- **Video Calls**: Every Tuesday and Thursday from 1:00 pm to 2:00 pm EST. 
 
 ---
 
