@@ -10,6 +10,7 @@
 - Focus on code review, going through several cycles of feedback for each solution.
 
 ## Individual
+
 ### Maab
 
 1. Study the mathematics needed for machine learning, starting with calculus.
@@ -30,3 +31,12 @@
 3. Learn best practices for writing clean, modular, and well-documented code.
 4. Foster effective collaboration within the team, including communication and conflict resolution.
 5. Develop interpersonal skills for working in diverse and interdisciplinary teams.
+
+### Adla:
+
+1. Solidify my knowledge in python, and using it in a real life project.
+2. Gain hands-on experience using diverse tools of collaboration (Git, Github).
+3. Learn more about data science, and algorithms.
+4. practice more complete, readable, and well documented solutions.
+5. practice collaboration on tasks, and task review.
+
