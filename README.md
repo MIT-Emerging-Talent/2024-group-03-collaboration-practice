@@ -1,4 +1,3 @@
-# Test 
 # Algorithms-And-Data-Structures
 
 <a href="https://github.com/djeada/Data-Structures/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/djeada/Data-Structures"></a>
@@ -88,6 +87,7 @@ For convenience, this repository includes a utility script named `run_tests.sh`.
 
 - **To run _all_ unit tests:** `./run_tests.sh`
 - **To run all _Python_ tests:** `./run_tests.sh --python`
+- **To run exact _Python_ exercise:** `./run_tests.sh --python --exercise={exercise_name}`
 - **To run all _C++_ tests:** `./run_tests.sh --cpp`
 - **To read all options from terminal:** `./run_tests.sh --help`
 

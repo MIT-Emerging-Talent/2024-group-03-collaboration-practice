@@ -54,11 +54,11 @@ local cpp_failed_tests=$((cpp_total_tests - cpp_passed_tests))
     total_failed_tests=$((total_failed_tests + cpp_failed_tests))
 
     echo "C++ Tests summary for $subdir:"
-    echo -e "Passed: \e[32m$cpp_passed_tests\e[0m, Failed: \e[31m$cpp_failed_tests\e[0m"
+    echo -e "Passed: \033[32m$cpp_passed_tests\033[0m, Failed: \033[31m$cpp_failed_tests\033[0m"
 done
 
 echo "Total C++ Tests summary:"
-echo -e "Total Passed: \e[32m$total_passed_tests\e[0m, Total Failed: \e[31m$total_failed_tests\e[0m"
+echo -e "Total Passed: \033[32m$total_passed_tests\033[0m, Total Failed: \033[31m$total_failed_tests\033[0m"
 
 }
 
@@ -82,6 +82,13 @@ test_python_projects() {
     local total_failed_tests=0
 
     for subdir in $subdirs; do
+
+        if [ -n "$1" ]; then # if exercise is not empty
+            if [ $(basename "$subdir") != "$1" ]; then # skip all other exercises
+              continue
+            fi
+        fi
+
         echo -e "\nRunning tests for Python project at: $subdir"
         cd "$subdir"
         : > "$python_test_log" # truncate the log file
@@ -89,8 +96,8 @@ test_python_projects() {
         cd "$current_dir"
 
         # count the number of passed and total tests
-        local python_total_tests=$(grep -oP 'Ran \K\d+' "$python_test_log")
-        local python_passed_tests=$(grep -o '.*... ok' "$python_test_log" | wc -l)
+        local python_total_tests=$(awk '/Ran [0-9]+ test/ {print $2}' "$python_test_log")
+        local python_passed_tests=$(grep -o '.*... ok' "$python_test_log" | wc -l | tr -d ' ')
         local python_failed_tests=$((python_total_tests - python_passed_tests))
 
         # add the passed and failed tests to the total
@@ -98,16 +105,21 @@ test_python_projects() {
         total_failed_tests=$((total_failed_tests + python_failed_tests))
 
         echo "Python Tests summary for $subdir:"
-        echo -e "Passed: \e[32m$python_passed_tests\e[0m, Failed: \e[31m$python_failed_tests\e[0m"
+        echo -e "Passed: \033[32m$python_passed_tests\033[0m, Failed: \033[31m$python_failed_tests\033[0m"
     done
 
     echo -e "\nTotal Python Tests summary:"
-    echo -e "Total Passed: \e[32m$total_passed_tests\e[0m, Total Failed: \e[31m$total_failed_tests\e[0m"
+    echo -e "Total Passed: \033[32m$total_passed_tests\033[0m, Total Failed: \033[31m$total_failed_tests\033[0m"
 
 }
 
 
 main() {
+    if [ "$#" -gt 2 ]; then
+        echo "Too many arguments"
+        exit 1
+    fi
+
     if [ "$#" -eq 0 ]; then
         echo "Running tests for all projects"
         echo "Running tests for Python projects"
@@ -116,7 +128,7 @@ main() {
         test_cpp_projects
     fi
 
-    if [ "$#" -eq 1 ]; then
+    if [ "$#" -ge 1 ]; then
         if [ "$1" == "-h" ] || [ "$1" == "--help" ]; then
             echo "Usage: run_tests.sh [OPTION]"
             echo "Run tests for all projects."
@@ -128,8 +140,17 @@ main() {
             exit 0
         fi
         if [ "$1" == "-p" ] || [ "$1" == "--python" ]; then
+            local exercise=""
             echo "Running tests for Python projects"
-            test_python_projects
+            for arg in "$@"; do
+                case $arg in
+                    --exercise=*)
+                    exercise="${arg#*=}"
+                    shift
+                    ;;
+                esac
+            done
+            test_python_projects "$exercise"
             exit 0
         fi
         if [ "$1" == "-c" ] || [ "$1" == "--cpp" ]; then
@@ -139,12 +160,6 @@ main() {
         fi
     fi
 
-    if [ "$#" -gt 1 ]; then
-        echo "Too many arguments"
-        exit 1
-    fi
-
 }
 
 main "$@"
-
