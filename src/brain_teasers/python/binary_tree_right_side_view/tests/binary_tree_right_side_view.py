@@ -1,6 +1,6 @@
 import unittest
 
-from src.binary_tree_right_side_view import TreeNode, right_side_view
+from src.brain_teasers.python.binary_tree_right_side_view.src.binary_tree_right_side_view import TreeNode, right_side_view
 
 
 class TestBinaryTreeRightSideView(unittest.TestCase):
