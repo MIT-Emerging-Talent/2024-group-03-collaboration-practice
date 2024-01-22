@@ -14,9 +14,9 @@
 ### Maab
 
 1. Study the mathematics needed for machine learning, starting with calculus.
-2. Learn OOP using C++
-3. Review DSs and algorithms you have already studied. 
-4. Learn to program faster, to be a more efficient developer.
+2. Learn OOP using C++.
+3. Learn to program faster, to be a more efficient developer.
+4. Study concepts from 6.002x course.
 
 ### Oleksii
 
